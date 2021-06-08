@@ -1,0 +1,28 @@
+{
+  "name": "gama-ecommerce-api",
+  "version": "1.0.0",
+  "description": "API para o gerenciamento de ecommerce.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon src/server"
+  },
+  "repository": {
+    "type": "module",
+    "url": "git+https://github.com/danielalfb/gama-ecommerce-api.git"
+  },
+  "author": "Daniela Barbosa, Lara Iasmine",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/danielalfb/gama-ecommerce-api/issues"
+  },
+  "homepage": "https://github.com/danielalfb/gama-ecommerce-api#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mysql2": "^2.2.5",
+    "nodemon": "^2.0.7"
+  },
+  "devDependencies": {
+    "sucrase": "^3.18.1"
+  }
+}
