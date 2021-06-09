@@ -30,7 +30,7 @@ router.get('/produtos', (req, res) => {
 
 router.get('/produtos/:produtoId', (req, res) => {
   connection.query(
-    'SELECT * FROM `gama-restapi`.produtos WHERE id = ?',
+    'SELECT produtos.*, departamentos.nome as nomedodept  FROM `gama-restapi`.produtos INNER JOIN `gama-restapi`.departamentos on produtos.deptid = departamentos.id WHERE produtos.id = ?',
     [req.params.produtoId],
     (err, rows, fields) => {
       if (err) throw err;
