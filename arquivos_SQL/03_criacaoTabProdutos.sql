@@ -1,11 +1,11 @@
-CREATE TABLE `Produtos` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `nome` varchar(100) DEFAULT NULL,
-  `preco` decimal(7,2) DEFAULT NULL,
-  `qtdestoque` int DEFAULT NULL,
-  `disponivel` int NOT NULL,
-  `emdestaque` int NOT NULL,
-  `deptid` int NOT NULL,
+CREATE TABLE `produtos` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `nome` VARCHAR(100) NOT NULL,
+  `preco` DOUBLE NOT NULL,
+  `qtdestoque` INT NOT NULL,
+  `disponivel` VARCHAR(1) NOT NULL,
+  `emdestaque` VARCHAR(1) NOT NULL,
+  `deptid` INT NOT NULL,
   PRIMARY KEY (`id`),
-  CONSTRAINT fk_deptid FOREIGN KEY (deptid) REFERENCES Departamentos(id)
+  CONSTRAINT fk_produto_dept FOREIGN KEY (deptid) REFERENCES Departamentos(id)
 );

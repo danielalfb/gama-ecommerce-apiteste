@@ -1,4 +1,3 @@
-// const { Router } = require('express');
 import { Router } from 'express';
 const router = new Router();
 
@@ -53,20 +52,25 @@ router.post('/produtos', (req, res) => {
     produto.emdestaque,
     produto.deptid,
   ];
-  const qry =
-    'INSERT INTO `gama-restapi`.produtos (nome, preco, qtdestoque, disponivel, emdestaque, deptid) VALUES (?,?,?,?,?,?)';
 
-  connection.query(qry, values, (err, rows, fields) => {
-    if (!produto) {
-      return res.status(400).json({ err: 'Preenchimento inválido' });
-    }
-    if (produto.preco === 0) {
+  const { nome, qtdestoque, disponivel, emdestaque, deptid } = produto;
+
+  if (!nome || !qtdestoque || !disponivel || !emdestaque || !deptid) {
+    return res
+      .status(400)
+      .json({ err: 'Preenchimento incorreto, cheque os campos.' });
+  } else if (produto.preco === 0 || !produto.preco) {
+    return res.status(400).json({ err: 'O preço do produto não pode ser 0.' });
+  } else {
+    const qry =
+      'INSERT INTO `gama-restapi`.produtos (nome, preco, qtdestoque, disponivel, emdestaque, deptid) VALUES (?,?,?,?,?,?)';
+
+    connection.query(qry, values, (err, rows, fields) => {
       return res
-        .status(400)
-        .json({ err: 'O preço do produto não pode ser 0.' });
-    }
-    return res.status(200).json(produto);
-  });
+        .status(200)
+        .json({ message: 'Produto cadastrado com sucesso.' });
+    });
+  }
 });
 
 // router.post('/produtos', (req, res) => {
