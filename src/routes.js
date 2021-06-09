@@ -65,6 +65,7 @@ router.post('/produtos', (req, res) => {
     return res.status(400).json({ err: 'O preço do produto não pode ser 0.' });
   } else {
     connection.query(qry, values, (err, rows, fields) => {
+      if (err) throw err;
       return res
         .status(200)
         .json({ message: 'Produto cadastrado com sucesso.' });
