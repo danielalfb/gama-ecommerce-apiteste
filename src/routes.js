@@ -67,7 +67,7 @@ router.post('/produtos', (req, res) => {
     connection.query(qry, values, (err, rows, fields) => {
       if (err) throw err;
       return res
-        .status(200)
+        .status(201)
         .json({ message: 'Produto cadastrado com sucesso.' });
     });
   }
