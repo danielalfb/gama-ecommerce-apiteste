@@ -34,51 +34,41 @@ A REST API construída esta especificada abaixo.
 
 ## **Host e porta**
 
-<localhost:3000>
+<http://localhost:3000/>
 
 ## **Instruções para teste**
 
-1.  Clone o repositório
-2.  Abra o MySQL Workbench
-3.  Entre em sua conexão
+1.  Clone o repositório;
+2.  Abra o MySQL Workbench;
+3.  Entre em sua conexão;
 4.  Rode os seguintes scripts obrigatoriamente na seguinte ordem:
 
-    a. 01 CriacaoSchema (/arquivos_SQL/01_criacaoSchema.sql)
+    a. [01 Criação Schema](arquivos_SQL/01_criacaoSchema.sql)
 
-    b. 02 Criacao Tab_Departamentos(/arquivos_SQL/02_criacaoTabDepartamentos.sql)
+    b. [02 Criação Tab_Departamentos](arquivos_SQL/02_criacaoTab_Departamentos.sql)
 
-    c. 03 Criacao Tab_Produtos(/arquivos_SQL/03_criacaoTabProdutos.sql)
+    c. [03 Criação Tab_Produtos](arquivos_SQL/03_criacaoTab_Produtos.sql)
 
-    d. 04 Insercao dos Departamentos(/arquivos_SQL/04_insercaoDepartamentos.sql)
+    d. [04 Inserção dos Departamentos](arquivos_SQL/04_insercaoDepartamentos.sql)
 
-    e. 05 Insercao dos Produtos(/arquivos_SQL/05_insercaoProdutos.sql)
+    e. [05 Inserção dos Produtos](arquivos_SQL/04_insercaoProdutos.sql)
 
-5.  Abra o arquivo _dbconfig:_ e substitua as informacoes _user e password_ por suas informacoes de conexão
+5.  Abra o arquivo [_dbconfig_](src/config/dbconfig.js) e substitua por suas informações de conexão, como no exemplo abaixo:
 
-**Divirta-se**
+    ```js
+    module.exports = {
+      host: 'localhost',
+      user: 'SEU_USER',
+      password: 'SUA_SENHA',
+      db: 'gama-restapi',
+    };
+    ```
 
-6. Rode o comando de execução e a mensagem "Conectado a base de dados" aparecerá no console
+6.  Rode o comando de execução e a mensagem "Conectado a base de dados" aparecerá no console.
 
-7. Abra o Postman ou outro programa de sua preferencia e crie _requests_ para as sequistes solicitações: 
+### **Divirta-se!**
 
-    - Listar todos os produtos (_GET_ http://localhost:3000/produtos)
-    
-    - Listar produto por ID (_GET_ http://localhost:3000/produtos/:produtoId)
-
-    - Inserir produto (_PUT_ http://localhost:3000/produtos)*
-
-    - Atualizar produto existente (_POST_ http://localhost:3000/produtos/produtoId)*
-
-    - Listar todos os departamentos (_GET_ http://localhost:3000/departamentos)
-
-    - Listar departamento por ID(_GET_ http://localhost:3000/departamentos/departamentoId)
-
-    * No caso de _PUT_ e _POST_ todos os campos do produto deverão ser preenchidos e o valor não deverá ser nulo (preco = 0), caso contrário resultará em status ERRO
-
-8. Abra o MySQL workbench e verifique as alterações realizadas pelo _PUT_ e _POST_
-
-9. Parabéns! Você compilou com sucesso! Obrigada pela participação
-
+---
 
 ## **Métodos**
 
@@ -86,15 +76,11 @@ A REST API construída esta especificada abaixo.
 
 Retorna a lista de todos os produtos existentes.
 
-### **URL**
+### **ENDPOINT**
 
 `/produtos`
 
 ### **Resposta de sucesso**
-
-- Requisição:
-
-  `/produtos`
 
 - Status:
 
@@ -106,54 +92,50 @@ Retorna a lista de todos os produtos existentes.
   [
     {
       "id": 1,
-      "nome": "SSD Kingston A400, 480GB",
-      "preco": 409.9,
-      "qtd_estoque": 70,
-      "disponivel": 1,
-      "em_destaque": 1,
-      "id_dept": 1,
-      "nome_dept": "Hardware"
+      "nome": "ADAPTADOR BLUETOOH USB RECEPTOR DE AUDIO P2",
+      "preco": 5,
+      "qtdestoque": 10,
+      "disponivel": "1",
+      "emdestaque": "1",
+      "deptid": 1,
+      "nomedodept": "Adaptadores"
     },
     {
       "id": 2,
-      "nome": "Fone de Ouvido Sem Fio Sennheiser HD450BT",
-      "preco": 989,
-      "qtd_estoque": 10,
-      "disponivel": 1,
-      "em_destaque": 0,
-      "id_dept": 2,
-      "nome_dept": "Audio"
+      "nome": "ALICATE PARA CRIMPAR TL-315 3 EM 1",
+      "preco": 15,
+      "qtdestoque": 16,
+      "disponivel": "1",
+      "emdestaque": "1",
+      "deptid": 2,
+      "nomedodept": "Ferramentas"
     },
     {
       "id": 3,
-      "nome": "Fone de Ouvido JBL In Ear, Preto, JBLC50HIBLK",
-      "preco": 39,
-      "qtd_estoque": 30,
-      "disponivel": 1,
-      "em_destaque": 0,
-      "id_dept": 2,
-      "nome_dept": "Audio"
+      "nome": "CAMERA WEBCAM LOGITECH C270 HD 960-000694",
+      "preco": 41,
+      "qtdestoque": 27,
+      "disponivel": "1",
+      "emdestaque": "0",
+      "deptid": 3,
+      "nomedodept": "Eletronicos"
     },
     {
       "id": 4,
-      "nome": "Smartphone Xiaomi Redmi 9, 64GB",
-      "preco": 1429.9,
-      "qtd_estoque": 5,
-      "disponivel": 1,
-      "em_destaque": 1,
-      "id_dept": 3,
-      "nome_dept": "Smartphones"
+      "nome": "ASPIRADOR NAPPO NLAR-063 ROBOT WIFI 350ML PRETO",
+      "preco": 87,
+      "qtdestoque": 2,
+      "disponivel": "1",
+      "emdestaque": "0",
+      "deptid": 4,
+      "nomedodept": "Casa"
     }
   ]
   ```
 
 ### **Resposta de erro**
 
-Dispara caso o array de Produtos esteja vazio.
-
-- Requisição:
-
-  `/produtos`
+Dispara caso a tabela de Produtos esteja vazia.
 
 - Status:
 
@@ -173,7 +155,7 @@ Dispara caso o array de Produtos esteja vazio.
 
 Retorna os detalhes de 1 único produto.
 
-### **URL**
+### **ENDPOINT**
 
 `/produtos/{id}`
 
@@ -198,16 +180,18 @@ Nenhum
 - Conteúdo:
 
   ```json
-  {
-    "id": 1,
-    "nome": "SSD Kingston A400, 480GB",
-    "preco": 409.9,
-    "qtd_estoque": 70,
-    "disponivel": 1,
-    "em_destaque": 1,
-    "id_dept": 1,
-    "nome_dept": "Hardware"
-  }
+  [
+    {
+      "id": 1,
+      "nome": "ADAPTADOR BLUETOOH USB RECEPTOR DE AUDIO P2",
+      "preco": 5,
+      "qtdestoque": 10,
+      "disponivel": "1",
+      "emdestaque": "1",
+      "deptid": 1,
+      "nomedodept": "Adaptadores"
+    }
+  ]
   ```
 
 ### **Resposta de erro**
@@ -234,7 +218,7 @@ Nenhum
 
 Recebe um JSON com dados de um produto e o inclui na base de dados.
 
-### **URL**
+### **ENDPOINT**
 
 `/produto`
 
@@ -249,10 +233,9 @@ Nenhum
   "nome": STRING,
   "preco": INT,
   "qtd_estoque": INT,
-  "disponivel": 1 || 0,
-  "em_destaque": 1 || 0,
-  "id_dept": INT,
-  "nome_dept": STRING
+  "disponivel": "1" || "0",
+  "em_destaque": "1" || "0",
+  "id_dept": INT
 }
 ```
 
@@ -262,32 +245,24 @@ Nenhum
 
   ```json
   {
-    "nome": "Smartphone Asus Zenfone 6, 256GB",
-    "preco": 3869,
-    "qtd_estoque": 7,
-    "disponivel": 1,
-    "em_destaque": 0,
-    "id_dept": 3,
-    "nome_dept": "Smartphones"
+    "nome": "SSD Kingston A400, 1TB",
+    "preco": 699,
+    "qtdestoque": 50,
+    "disponivel": "1",
+    "emdestaque": "1",
+    "deptid": 1
   }
   ```
 
 - Status:
 
-  ![Status da requisicao](https://img.shields.io/badge/-200%20OK-brightgreen)
+  ![Status da requisicao](https://img.shields.io/badge/-201%20CREATED-brightgreen)
 
 - Conteúdo:
 
   ```json
   {
-    "id": 5,
-    "nome": "Smartphone Asus Zenfone 6, 256GB",
-    "preco": 3869,
-    "qtd_estoque": 7,
-    "disponivel": 1,
-    "em_destaque": 1,
-    "id_dept": 3,
-    "nome_dept": "Smartphones"
+    "message": "Produto cadastrado com sucesso."
   }
   ```
 
@@ -297,13 +272,12 @@ Nenhum
 
   ```json
   {
-    "nome": "Smartphone Asus Zenfone 6, 256GB",
+    "nome": "SSD Kingston A400, 1TB",
     "preco": 0,
-    "qtd_estoque": 7,
-    "disponivel": 1,
-    "em_destaque": 0,
-    "id_dept": 3,
-    "nome_dept": "Smartphones"
+    "qtdestoque": 50,
+    "disponivel": "1",
+    "emdestaque": "1",
+    "deptid": 1
   }
   ```
 
@@ -315,7 +289,7 @@ Nenhum
 
   ```json
   {
-    "error": "O preço do produto não pode ser 0."
+    "err": "O preço do produto não pode ser 0."
   }
   ```
 
@@ -325,12 +299,11 @@ Nenhum
 
   ```json
   {
-    "preco": 3869,
-    "qtd_estoque": 7,
-    "disponivel": 1,
-    "em_destaque": 1,
-    "id_dept": 3,
-    "nome_dept": "Smartphones"
+    "nome": "SSD Kingston A400, 1TB",
+    "preco": 699,
+    "disponivel": "1",
+    "emdestaque": "1",
+    "deptid": 1
   }
   ```
 
@@ -352,7 +325,7 @@ Nenhum
 
 Recebe um JSON com dados de um produto, cujo ID é especificado na URL e atualiza seus dados na base de dados.
 
-### **URL**
+### **ENDPOINT**
 
 `/produto/{id}`
 
@@ -367,10 +340,9 @@ Recebe um JSON com dados de um produto, cujo ID é especificado na URL e atualiz
   "nome": STRING,
   "preco": INT,
   "qtd_estoque": INT,
-  "disponivel": 1 || 0,
-  "em_destaque": 1 || 0,
-  "id_dept": INT,
-  "nome_dept": STRING
+  "disponivel": "1" || "0",
+  "em_destaque": "1" || "0",
+  "id_dept": INT
 }
 ```
 
@@ -378,19 +350,18 @@ Recebe um JSON com dados de um produto, cujo ID é especificado na URL e atualiz
 
 - Requisição na URL:
 
-  `/produtos/1`
+  `/produtos/3`
 
 - Requisição no BODY:
 
   ```json
   {
-    "nome": "SSD Kingston A400, 480GB",
-    "preco": 309,
-    "qtd_estoque": 20,
-    "disponivel": 1,
-    "em_destaque": 1,
-    "id_dept": 1,
-    "nome_dept": "Hardware"
+    "nome": "CAMERA WEBCAM LOGITECH C270 HD 960-000694",
+    "preco": 39.9,
+    "qtdestoque": 25,
+    "disponivel": "1",
+    "emdestaque": "1",
+    "deptid": 3
   }
   ```
 
@@ -402,14 +373,7 @@ Recebe um JSON com dados de um produto, cujo ID é especificado na URL e atualiz
 
   ```json
   {
-    "id": 1,
-    "nome": "SSD Kingston A400, 480GB",
-    "preco": 309,
-    "qtd_estoque": 20,
-    "disponivel": 1,
-    "em_destaque": 1,
-    "id_dept": 1,
-    "nome_dept": "Hardware"
+    "message": "Produto editado com sucesso."
   }
   ```
 
@@ -427,7 +391,7 @@ Recebe um JSON com dados de um produto, cujo ID é especificado na URL e atualiz
 
   ```json
   {
-    "err": "Produto não existe."
+    "err": "Produto não encontrado."
   }
   ```
 
@@ -435,18 +399,17 @@ Recebe um JSON com dados de um produto, cujo ID é especificado na URL e atualiz
 
 - Requisição na URL:
 
-  `/produtos/1`
+  `/produtos/3`
 
 - Requisição no BODY:
 
   ```json
   {
-    "nome": "SSD Kingston A400, 480GB",
-    "preco": 309,
-    "disponivel": 1,
-    "em_destaque": 1,
-    "id_dept": 1,
-    "nome_dept": "Hardware"
+    "nome": "CAMERA WEBCAM LOGITECH C270 HD 960-000694",
+    "preco": 39.9,
+    "qtdestoque": 25,
+    "disponivel": "1",
+    "emdestaque": "1"
   }
   ```
 
@@ -466,19 +429,18 @@ Recebe um JSON com dados de um produto, cujo ID é especificado na URL e atualiz
 
 - Requisição na URL:
 
-  `/produtos/1`
+  `/produtos/3`
 
 - Requisição no BODY:
 
   ```json
   {
-    "nome": "SSD Kingston A400, 480GB",
+    "nome": "CAMERA WEBCAM LOGITECH C270 HD 960-000694",
     "preco": 0,
-    "qtd_estoque": 20,
-    "disponivel": 1,
-    "em_destaque": 1,
-    "id_dept": 1,
-    "nome_dept": "Hardware"
+    "qtdestoque": 25,
+    "disponivel": "1",
+    "emdestaque": "1",
+    "deptid": 3
   }
   ```
 
@@ -500,15 +462,11 @@ Recebe um JSON com dados de um produto, cujo ID é especificado na URL e atualiz
 
 Retorna a lista de todos os departamentos existentes.
 
-### **URL**
+### **ENDPOINT**
 
 `/departamentos`
 
 ### **Resposta de sucesso**
-
-- Requisição:
-
-  `/departamentos`
 
 - Status:
 
@@ -520,26 +478,26 @@ Retorna a lista de todos os departamentos existentes.
   [
     {
       "id": 1,
-      "nome": "Hardware"
+      "nome": "Adaptadores"
     },
     {
       "id": 2,
-      "nome": "Audio"
-    },
-    {
-      "id": 2,
-      "nome": "Audio"
+      "nome": "Ferramentas"
     },
     {
       "id": 3,
-      "nome": "Smartphones"
+      "nome": "Eletronicos"
+    },
+    {
+      "id": 4,
+      "nome": "Casa"
     }
   ]
   ```
 
 ### **Resposta de erro**
 
-Dispara caso o array de Departamentos esteja vazio.
+Dispara caso a tabela de Departamentos esteja vazia.
 
 - Status:
 
@@ -559,7 +517,7 @@ Dispara caso o array de Departamentos esteja vazio.
 
 Retorna o departamento e a lista de produtos que estão associadas a ele.
 
-### **URL**
+### **ENDPOINT**
 
 `/departamentos/{id}`
 
@@ -586,17 +544,11 @@ Nenhum
   ```json
   [
     {
-      "id": 2,
-      "nome": "Audio"
-    },
-    [
-      {
-        "produto": "Fone de Ouvido Sem Fio Sennheiser HD450BT"
-      },
-      {
-        "produto": "Fone de Ouvido JBL In Ear, Preto, JBLC50HIBLK"
-      }
-    ]
+      "deptid": 2,
+      "deptnome": "Ferramentas",
+      "produtoid": 2,
+      "produtonome": "ALICATE PARA CRIMPAR TL-315 3 EM 1"
+    }
   ]
   ```
 
@@ -614,6 +566,10 @@ Nenhum
 
   ```json
   {
-    "err": "O departamento não existe."
+    "err": "Departamento não encontrado."
   }
   ```
+
+---
+
+### **Parabéns! Você compilou com sucesso! Obrigada pela participação!**
