@@ -51,7 +51,7 @@ A REST API construída esta especificada abaixo.
 
     d. [04 Inserção dos Departamentos](arquivos_SQL/04_insercaoDepartamentos.sql)
 
-    e. [05 Inserção dos Produtos](arquivos_SQL/04_insercaoProdutos.sql)
+    e. [05 Inserção dos Produtos](arquivos_SQL/05_insercaoProdutos.sql)
 
 5.  Abra o arquivo [_dbconfig_](src/config/dbconfig.js) e substitua por suas informações de conexão, como no exemplo abaixo:
 
