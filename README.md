@@ -28,20 +28,17 @@ $ git clone https://github.com/danielalfb/gama-ecommerce-apiteste.git
 
     npm run dev
 
-# REST API
-
-A REST API construída esta especificada abaixo.
-
 ## **Host e porta**
 
 <http://localhost:3000/>
 
 ## **Instruções para teste**
 
-1.  Clone o repositório;
-2.  Abra o MySQL Workbench;
-3.  Entre em sua conexão;
-4.  Rode os seguintes scripts obrigatoriamente na seguinte ordem:
+1.  Clone o repositório
+2.  Instale as dependências
+3.  Abra o MySQL Workbench
+4.  Entre em sua conexão
+5.  Rode os seguintes scripts obrigatoriamente na seguinte ordem:
 
     a. [01 Criação Schema](arquivos_SQL/01_criacaoSchema.sql)
 
