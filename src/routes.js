@@ -94,6 +94,7 @@ router.put('/produtos/:produtoId', (req, res) => {
     [req.params.produtoId],
     (err, rows, fields) => {
       if (rows.length <= 0) {
+        if (err) throw err;
         return res.status(404).json({ message: 'Produto não encontrado.' });
       } else {
         if (!nome || !qtdestoque || !disponivel || !emdestaque || !deptid) {
