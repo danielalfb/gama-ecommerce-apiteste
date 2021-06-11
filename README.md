@@ -42,13 +42,43 @@ A REST API construída esta especificada abaixo.
 2.  Abra o MySQL Workbench
 3.  Entre em sua conexão
 4.  Rode os seguintes scripts obrigatoriamente na seguinte ordem:
-    a. 01 CriacaoSchema
-    b. 02 Criacao Tab_Departamentos
-    c. 03 Criacao Tab_Produtos
-    d. 04 Insercao dos Departamentos
-    e. 05 Insercao dos Produtos
+
+    a. 01 CriacaoSchema (/arquivos_SQL/01_criacaoSchema.sql)
+
+    b. 02 Criacao Tab_Departamentos(/arquivos_SQL/02_criacaoTabDepartamentos.sql)
+
+    c. 03 Criacao Tab_Produtos(/arquivos_SQL/03_criacaoTabProdutos.sql)
+
+    d. 04 Insercao dos Departamentos(/arquivos_SQL/04_insercaoDepartamentos.sql)
+
+    e. 05 Insercao dos Produtos(/arquivos_SQL/05_insercaoProdutos.sql)
+
 5.  Abra o arquivo _dbconfig:_ e substitua as informacoes _user e password_ por suas informacoes de conexão
-6.
+
+**Divirta-se**
+
+6. Rode o comando de execução e a mensagem "Conectado a base de dados" aparecerá no console
+
+7. Abra o Postman ou outro programa de sua preferencia e crie _requests_ para as sequistes solicitações: 
+
+    - Listar todos os produtos (_GET_ http://localhost:3000/produtos)
+    
+    - Listar produto por ID (_GET_ http://localhost:3000/produtos/:produtoId)
+
+    - Inserir produto (_PUT_ http://localhost:3000/produtos)*
+
+    - Atualizar produto existente (_POST_ http://localhost:3000/produtos/produtoId)*
+
+    - Listar todos os departamentos (_GET_ http://localhost:3000/departamentos)
+
+    - Listar departamento por ID(_GET_ http://localhost:3000/departamentos/departamentoId)
+
+    * No caso de _PUT_ e _POST_ todos os campos do produto deverão ser preenchidos e o valor não deverá ser nulo (preco = 0), caso contrário resultará em status ERRO
+
+8. Abra o MySQL workbench e verifique as alterações realizadas pelo _PUT_ e _POST_
+
+9. Parabéns! Você compilou com sucesso! Obrigada pela participação
+
 
 ## **Métodos**
 
