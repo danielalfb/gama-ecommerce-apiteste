@@ -97,8 +97,10 @@ router.put('/produtos/:produtoId', (req, res) => {
     return res.status(400).json({ err: 'O preço do produto não pode ser 0.' });
   } else {
     connection.query(qry, values, (err, rows, fields) => {
+      if (rows.id !== req.params.produtoId)
+        return res.status(404).json({ message: 'Produto não encontrado.' });
       if (err) throw err;
-      return res.status(404).json({ err: 'Produto editado com sucesso.' });
+      return res.status(200).json({ message: 'Produto editado com sucesso.' });
     });
   }
 });
@@ -115,7 +117,7 @@ router.get('/departamentos', (req, res) => {
 
 router.get('/departamentos/:departamentoId', (req, res) => {
   connection.query(
-    'SELECT * FROM `gama-restapi`.produtos WHERE id = ?',
+    'SELECT departamentos.id as deptid, departamentos.nome as deptnome, produtos.id as produtoid, produtos.nome as produtonome FROM `gama-restapi`.departamentos INNER JOIN `gama-restapi`.produtos on departamentos.id = produtos.deptid WHERE departamentos.id = ?',
     [req.params.departamentoId],
     (err, rows, fields) => {
       if (err) throw err;
