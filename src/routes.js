@@ -89,20 +89,32 @@ router.put('/produtos/:produtoId', (req, res) => {
   const qry =
     'UPDATE `gama-restapi`.`produtos` SET nome = ?, preco = ?, qtdestoque = ?, disponivel = ?, emdestaque = ?, deptid = ? WHERE id = ?';
 
-  if (!nome || !qtdestoque || !disponivel || !emdestaque || !deptid) {
-    return res
-      .status(400)
-      .json({ err: 'Preenchimento incorreto, cheque os campos.' });
-  } else if (produto.preco === 0 || !produto.preco) {
-    return res.status(400).json({ err: 'O preço do produto não pode ser 0.' });
-  } else {
-    connection.query(qry, values, (err, rows, fields) => {
-      if (rows.id !== req.params.produtoId)
+  connection.query(
+    'SELECT * FROM `gama-restapi`.`produtos` WHERE id= ?',
+    [req.params.produtoId],
+    (err, rows, fields) => {
+      if (rows.length <= 0) {
         return res.status(404).json({ message: 'Produto não encontrado.' });
-      if (err) throw err;
-      return res.status(200).json({ message: 'Produto editado com sucesso.' });
-    });
-  }
+      } else {
+        if (!nome || !qtdestoque || !disponivel || !emdestaque || !deptid) {
+          return res
+            .status(400)
+            .json({ err: 'Preenchimento incorreto, cheque os campos.' });
+        } else if (produto.preco === 0 || !produto.preco) {
+          return res
+            .status(400)
+            .json({ err: 'O preço do produto não pode ser 0.' });
+        } else {
+          connection.query(qry, values, (err, rows, fields) => {
+            if (err) throw err;
+            return res
+              .status(200)
+              .json({ message: 'Produto editado com sucesso.' });
+          });
+        }
+      }
+    },
+  );
 });
 
 router.get('/departamentos', (req, res) => {
