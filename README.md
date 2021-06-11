@@ -45,9 +45,9 @@ A REST API construída esta especificada abaixo.
 
     a. [01 Criação Schema](arquivos_SQL/01_criacaoSchema.sql)
 
-    b. [02 Criação Tab_Departamentos](arquivos_SQL/02_criacaoTab_Departamentos.sql)
+    b. [02 Criação Tab_Departamentos](arquivos_SQL/02_criacaoTabDepartamentos.sql)
 
-    c. [03 Criação Tab_Produtos](arquivos_SQL/03_criacaoTab_Produtos.sql)
+    c. [03 Criação Tab_Produtos](arquivos_SQL/03_criacaoTabProdutos.sql)
 
     d. [04 Inserção dos Departamentos](arquivos_SQL/04_insercaoDepartamentos.sql)
 
