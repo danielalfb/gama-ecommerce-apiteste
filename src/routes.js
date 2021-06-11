@@ -20,7 +20,7 @@ connection.connect((err) => {
 
 router.get('/produtos', (req, res) => {
   connection.query(
-    'SELECT * FROM `gama-restapi`.produtos',
+    'SELECT produtos.*, departamentos.nome as nomedodept FROM `gama-restapi`.produtos JOIN `gama-restapi`.departamentos on produtos.deptid = departamentos.id',
     (err, rows, fields) => {
       if (err) throw err;
       res.status(200).json(rows);
