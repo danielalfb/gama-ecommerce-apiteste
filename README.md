@@ -1,6 +1,6 @@
 # GAMA ACADEMY E-COMMERCE - REST API
 
-API construída como mockup para a integração de um sistema de gerenciamento de e-commerce.
+API construída com integração com um banco de dados MySQL para a integração de um sistema de gerenciamento de e-commerce.
 
 ## Dependências
 
