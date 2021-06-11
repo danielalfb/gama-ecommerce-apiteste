@@ -17,7 +17,7 @@ No cmd, navegue até o diretório em que deseja clonar o repositório.
 Dentro do diretório, utilize o comando:
 
 ```
-$ git clone https://github.com/danielalfb/gama-ecommerce-api.git
+$ git clone https://github.com/danielalfb/gama-ecommerce-apiteste.git
 ```
 
 ## Instalando as dependências
